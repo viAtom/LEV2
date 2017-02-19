@@ -1,0 +1,18 @@
+<div class="main" *ngIf="game">
+  <app-lev-header [game]="game"></app-lev-header>
+  <div class="wrapper">
+    <div class="team blue-team">
+      <div class="players-container">
+        <app-lev-player *ngFor="let player of game.blueTeam.players; let first = first" [player]="player" [first]="first" [items]="items"
+          [gameSelected]="gameSelected"></app-lev-player>
+      </div>
+    </div>
+    <app-lev-map [game]="game" [gameSelected]="gameSelected"></app-lev-map>
+    <div class="team red-team">
+      <div class="players-container">
+        <app-lev-player *ngFor="let player of game.redTeam.players; let first = first" [player]="player" [first]="first" [items]="items"
+          [gameSelected]="gameSelected"></app-lev-player>
+      </div>
+    </div>
+  </div>
+</div>

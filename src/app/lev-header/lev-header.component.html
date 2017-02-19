@@ -1,0 +1,21 @@
+<div class="header-info">
+  <div class="header-blue">
+    <span class="team-name">{{game["blueTeam"].name}}</span>
+    <div>
+      <span class="team-inhibs"><img src="assets/img/icon-inhibitor.png"/>{{game["blueTeam"].inhibitorsKilled}}</span>
+      <span class="team-towers"><img src="assets/img/icon-tower.png"/>{{game["blueTeam"].towersKilled}}</span>
+      <span class="team-gold"><img src="assets/img/icon-player-gold.png"/>{{game["blueTeam"].tg/1000|number:'1.1-1'}}k</span>
+    </div>
+    <span class="team-kills">{{game.blueTeam.kills}}</span>
+  </div>
+  <img class="team-icon-kill" src="assets/img/icon-team-kills.png" />
+  <div class="header-red">
+    <span class="team-kills">{{game.redTeam.kills}}</span>
+    <div>
+      <span class="team-gold"><img src="assets/img/icon-player-gold.png"/>{{game["redTeam"].tg/1000|number:'1.1-1'}}k</span>
+      <span class="team-towers"><img src="assets/img/icon-tower.png"/>{{game["redTeam"].towersKilled}}</span>
+      <span class="team-inhibs"><img src="assets/img/icon-inhibitor.png"/>{{game["redTeam"].inhibitorsKilled}}</span>
+    </div>
+    <span class="team-name">{{game["redTeam"].name}}</span>
+  </div>
+</div>

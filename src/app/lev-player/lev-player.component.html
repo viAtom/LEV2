@@ -1,0 +1,68 @@
+<div class="player-container" id="{{gameSelected}}{{player.participantId}}" [class.player-dead]="player.h==0">
+  <div *ngIf="! first" class="divider"></div>
+  <div class="player" *ngIf="player.teamId==100">
+    <div>
+      <div class="player-stats">
+        <div>
+          <div>{{player.armor}}<img src="assets/img/icon-armor.png" class="indicator" title="Armor" /></div>
+          <div>{{player.magicResist}}<img src="assets/img/icon-mr.png" class="indicator" title="Magic Resist" /></div>
+          <div>{{player.ccReduction}}%<img src="assets/img/icon-cdr.png" class="indicator" title="Cooldown Reduction" /></div>
+        </div>
+        <div>
+          <div>{{player.attackDamage}}<img src="assets/img/icon-ad.png" class="indicator" title="Attack Damage" /></div>
+          <div>{{player.abilityPower}}<img src="assets/img/icon-ap.png" class="indicator" title="Ability Power" /></div>
+          <div>{{player.movementSpeed}}<img src="assets/img/icon-ms.png" class="indicator" title="Movement Speed" /></div>
+        </div>
+      </div>
+      <div class="player-info">
+        <div class="player-name">{{player.summonerName}}</div>
+        <div>{{player.kills}} / {{player.deaths}} / {{player.assists}}</div>
+        <div>{{player.mk}}<img class="icon" src="assets/img/icon-minion.png"> - <img class="icon" src="assets/img/icon-player-gold.png">{{(player.tg>1000)
+          ? (player.tg/1000).toFixed(3).replace('.', ' ') : player.tg}}</div>
+      </div>
+      <div class="champion-square noselect" title="{{player.championName}}" [style.background-image]="'url(http://ddragon.leagueoflegends.com/cdn/7.3.1/img/champion/'+player.championName+'.png)'">
+        <div class="player-level noselect">{{player.level}}</div>
+      </div>
+      <div class="stat-bars">
+        <div class="stat-bar health-bar"><span [style.width]="(player.h*100/player.maxHealth|number:'1.2-2')+'%'"></span></div>
+        <div class="stat-bar power-bar"><span *ngIf="player.maxPower>0" [style.width]="(player.p*100/(player.maxPower)|number:'1.2-2')+'%'"></span></div>
+      </div>
+    </div>
+    <div class="player-stuff noselect">
+      <div [style.background-image]="'url(http://ddragon.leagueoflegends.com/cdn/7.3.1/img/item/'+item+'.png)'" *ngFor="let item of player.items"
+        class="player-item noselect" [md-tooltip]="items[item].name" tooltip-position="above"></div>
+    </div>
+  </div>
+  <div class="player" *ngIf="player.teamId==200">
+    <div>
+      <div class="stat-bars">
+        <div class="stat-bar health-bar"><span [style.width]="(player.h*100/player.maxHealth|number:'1.2-2')+'%'"></span></div>
+        <div class="stat-bar power-bar"><span *ngIf="player.maxPower>0" [style.width]="(player.p*100/(player.maxPower)|number:'1.2-2')+'%'"></span></div>
+      </div>
+      <div class="champion-square noselect" title="{{player.championName}}" [style.background-image]="'url(http://ddragon.leagueoflegends.com/cdn/7.3.1/img/champion/'+player.championName+'.png)'">
+        <div class="player-level noselect">{{player.level}}</div>
+      </div>
+      <div class="player-info">
+        <div class="player-name">{{player.summonerName}}</div>
+        <div>{{player.kills}} / {{player.deaths}} / {{player.assists}}</div>
+        <div>{{(player.tg>1000) ? (player.tg/1000).toFixed(3).replace('.', ' ') : player.tg}}<img class="icon" src="assets/img/icon-player-gold.png">          - <img class="icon" src="assets/img/icon-minion.png">{{player.mk}}</div>
+      </div>
+      <div class="player-stats">
+        <div>
+          <div><img src="assets/img/icon-ad.png" class="indicator" title="Attack Damage" />{{player.attackDamage}}</div>
+          <div><img src="assets/img/icon-ap.png" class="indicator" title="Ability Power" />{{player.abilityPower}}</div>
+          <div><img src="assets/img/icon-ms.png" class="indicator" title="Movement Speed" />{{player.movementSpeed}}</div>
+        </div>
+        <div>
+          <div><img src="assets/img/icon-armor.png" class="indicator" title="Armor" />{{player.armor}}</div>
+          <div><img src="assets/img/icon-mr.png" class="indicator" title="Magic Resist" />{{player.magicResist}}</div>
+          <div><img src="assets/img/icon-cdr.png" class="indicator" title="Cooldown Reduction" />{{player.ccReduction}}%</div>
+        </div>
+      </div>
+    </div>
+    <div class="player-stuff noselect">
+      <div [style.background-image]="'url(http://ddragon.leagueoflegends.com/cdn/7.3.1/img/item/'+item+'.png)'" *ngFor="let item of player.items"
+        class="player-item noselect" [md-tooltip]="items[item].name" tooltip-position="above"></div>
+    </div>
+  </div>
+</div>

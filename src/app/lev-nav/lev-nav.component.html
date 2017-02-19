@@ -1,0 +1,24 @@
+<nav class="navbar navbar-inverse navbar-perso">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <span class="navbar-brand-perso noselect">LoL Esports Viewer</span>
+    </div>
+    <ul class="nav navbar-nav navbar-right">
+      <li ng-click="replay()" class="clickable"><a>Replay</a></li>
+      <li><a href="http://watch.euw.lolesports.com/" target="_blank">Watch Esports Live</a></li>
+    </ul>
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Availables games <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li class="game-available" *ngFor="let a of groupsName" [class.game-selected]="groupSelected==a"><a (click)="chooseGroup(a)">{{ a }}</a></li>
+            <!--<li role="separator" class="divider"></li>-->
+          </ul>
+        </li>
+        <li class="game-available" *ngFor="let a of gameGroups[groupSelected]" [class.game-selected]="gameSelected==a"><a (click)="chooseMatch(a)">{{getNameMatch(a)}}<i class="material-icons red" [class.invisible]="games[a].gameComplete">fiber_manual_record</i></a></li>
+        <!--<li class="clickable" type="button" style="color: black"><a>Debug</a></li>-->
+      </ul>
+    </div>
+  </div>
+</nav>

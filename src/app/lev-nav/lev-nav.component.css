@@ -1,0 +1,47 @@
+.navbar-perso {
+	border-radius: 0;
+	border: 0;
+	border-bottom: 2px solid #390e34;
+	background: #040507;
+	margin: 0;
+	height: 52px;
+}
+
+.navbar-brand-perso {
+	padding: 15px 10px 15px 0;;
+	color: #999;
+	display: inline-block;
+}
+
+.navbar-brand-perso:hover {
+	color: #fff;
+}
+
+.games {
+	margin: 10px 0;
+}
+
+.dropdown-menu {
+	background-color: #040507;
+}
+
+.dropdown-menu > li.game-available > a {
+	color: #999;
+}
+
+.dropdown-menu > li.game-available > a:hover {
+	background-color: #101010;
+	color: #FFF;
+}
+
+.game-available:not(.game-selected):hover {
+	cursor: pointer;
+}
+
+.game-selected, .dropdown-menu > li.game-selected > a:hover {
+	background-color: #303030;
+}
+
+.nav > li.game-selected > a, .dropdown-menu > li.game-selected.game-available > a {
+	color: #FFF;
+}
