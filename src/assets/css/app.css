@@ -361,7 +361,7 @@ i.material-icons {
   background-color: #f92f2f;
 }
 
-svg {
+svg.lev-minimap {
   width: 512px;
   height: 512px;
   background-image: url('http://ddragon.leagueoflegends.com/cdn/6.8.1/img/map/map11.png');
@@ -372,11 +372,11 @@ svg {
   flex: 0 0 auto;
 }
 
-svg circle {
+svg.lev-minimap circle {
   transition: all 1s linear;
 }
 
-svg>image {
+svg.lev-minimap>image {
   transform-origin: center;
 }
 

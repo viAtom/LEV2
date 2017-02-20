@@ -20,7 +20,7 @@
         <div>{{player.mk}}<img class="icon" src="assets/img/icon-minion.png"> - <img class="icon" src="assets/img/icon-player-gold.png">{{(player.tg>1000)
           ? (player.tg/1000).toFixed(3).replace('.', ' ') : player.tg}}</div>
       </div>
-      <div class="champion-square noselect" [md-tooltip]="player.championName" tooltip-position="below" title="{{player.championName}}" [style.background-image]="'url(http://ddragon.leagueoflegends.com/cdn/7.3.1/img/champion/'+player.championName+'.png)'">
+      <div class="champion-square noselect" [md-tooltip]="player.championName" mdTooltipShowDelay="500" tooltip-position="right" [style.background-image]="'url(http://ddragon.leagueoflegends.com/cdn/7.3.1/img/champion/'+player.championName+'.png)'">
         <div class="player-level noselect">{{player.level}}</div>
       </div>
       <div class="stat-bars">
@@ -30,7 +30,7 @@
     </div>
     <div class="player-stuff noselect">
       <div [style.background-image]="'url(http://ddragon.leagueoflegends.com/cdn/7.3.1/img/item/'+item+'.png)'" *ngFor="let item of player.items"
-        class="player-item noselect" [md-tooltip]="items[item].name" tooltip-position="above"></div>
+        class="player-item noselect" [md-tooltip]="items[item].name" mdTooltipShowDelay="500" tooltip-position="above"></div>
     </div>
   </div>
   <div class="player" *ngIf="player.teamId==200">
@@ -39,7 +39,7 @@
         <div class="stat-bar health-bar"><span [style.width]="(player.h*100/player.maxHealth|number:'1.2-2')+'%'"></span></div>
         <div class="stat-bar power-bar"><span *ngIf="player.maxPower>0" [style.width]="(player.p*100/(player.maxPower)|number:'1.2-2')+'%'"></span></div>
       </div>
-      <div class="champion-square noselect" [md-tooltip]="player.championName" tooltip-position="below" [style.background-image]="'url(http://ddragon.leagueoflegends.com/cdn/7.3.1/img/champion/'+player.championName+'.png)'">
+      <div class="champion-square noselect" [md-tooltip]="player.championName" mdTooltipShowDelay="500" tooltip-position="left" [style.background-image]="'url(http://ddragon.leagueoflegends.com/cdn/7.3.1/img/champion/'+player.championName+'.png)'">
         <div class="player-level noselect">{{player.level}}</div>
       </div>
       <div class="player-info">
@@ -62,7 +62,7 @@
     </div>
     <div class="player-stuff noselect">
       <div [style.background-image]="'url(http://ddragon.leagueoflegends.com/cdn/7.3.1/img/item/'+item+'.png)'" *ngFor="let item of player.items"
-        class="player-item noselect" [md-tooltip]="items[item].name" tooltip-position="above"></div>
+        class="player-item noselect" [md-tooltip]="items[item].name" mdTooltipShowDelay="500" tooltip-position="above"></div>
     </div>
   </div>
 </div>
