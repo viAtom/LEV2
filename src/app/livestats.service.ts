@@ -8,7 +8,7 @@ import { Logger } from "angular2-logger/core";
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 
-const TOKEN_URL = "https://api.lolesports.com/api/issueToken";
+const TOKEN_URL = "http://api.lolesports.com/api/issueToken";
 const TOKEN = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ2IjoiMS4wIiwiamlkIjoiNjczODA1YjUtZWE3My00ZDVkLThiNGEtZTM4ZGE2MWU1ODIzIiwiaWF0IjoxNDg2ODQ2NDE1NzIzLCJleHAiOjE0ODc0NTEyMTU3MjMsIm5iZiI6MTQ4Njg0NjQxNTcyMywiY2lkIjoiYTkyNjQwZjI2ZGMzZTM1NGI0MDIwMjZhMjA3NWNiZjMiLCJzdWIiOnsiaXAiOiI5My4zMS4xNDEuMTQyIiwidWEiOiJNb3ppbGxhLzUuMCAoWDExOyBMaW51eCB4ODZfNjQpIEFwcGxlV2ViS2l0LzUzNy4zNiAoS0hUTUwsIGxpa2UgR2Vja28pIENocm9tZS81NC4wLjI4NDAuNTkgU2FmYXJpLzUzNy4zNiJ9LCJyZWYiOlsid2F0Y2guKi5sb2xlc3BvcnRzLmNvbSJdLCJzcnYiOlsibGl2ZXN0YXRzLXYxLjAiXX0.Jb77U4QHkro1QCnwizLSMcRrsngyo_Mq2V3tcrgOnkU";
 const WS_URL = 'ws://livestats.proxy.lolesports.com/stats?jwt=';
 
