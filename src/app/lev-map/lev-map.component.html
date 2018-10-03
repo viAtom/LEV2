@@ -1,7 +1,7 @@
 <div class="game-info">
-  <div class="annonces"></div>
-  <div class="timer">{{getTime()}}</div>
-  <svg width="512" height="512" class="lev-minimap">
+    <div class="annonces"></div>
+    <div class="timer">{{getTime()}}</div>
+    <svg width="512" height="512" class="lev-minimap">
     <!-- 
       <image href="assets/img/icon-tower.png" x="32" y="340" height="30" style="transform: rotateZ(0deg);" />
       <image href="assets/img/icon-tower.png" x="114" y="366" height="30" style="transform: rotateZ(45deg);" />
@@ -19,7 +19,7 @@
     <g *ngFor="let player of game.players">
       <defs>
         <pattern [attr.id]="'icon-'+gameSelected+'-'+player.championName" x="0" y="0" height="100%" width="100%" viewBox="0 0 28 28">
-          <image x="-3" y="-3" width="34" height="34" [attr.xlink:href]="'http://ddragon.leagueoflegends.com/cdn/7.3.1/img/champion/'+player.championName+'.png'"></image>
+          <image x="-3" y="-3" width="34" height="34" [attr.xlink:href]="'http://ddragon.leagueoflegends.com/cdn/8.19.1/img/champion/'+player.championName+'.png'"></image>
         </pattern>
       </defs>
       <circle [attr.cx]="player.x/29" [attr.cy]="512-(player.y/29)" r="14" [attr.stroke]="player.teamId=='100' ? 'rgba(58, 171, 195, 0.75)' : 'rgba(184, 71, 80, 0.75)'"

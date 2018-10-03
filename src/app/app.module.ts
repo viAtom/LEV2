@@ -2,10 +2,11 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
-import { MaterialModule } from '@angular/material';
-
-import { Logger } from 'angular2-logger/core';
+// import { Logger } from 'angular2-logger/core';
 import { isDevMode } from '@angular/core';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatProgressBarModule, MatTooltipModule } from '@angular/material';
+
 import { environment } from '../environments/environment';
 
 import { LivestatsService } from './livestats.service';
@@ -34,16 +35,18 @@ import { LevHeaderComponent } from './lev-header/lev-header.component';
     BrowserModule,
     FormsModule,
     HttpModule,
-    MaterialModule.forRoot()
+    MatProgressBarModule,
+    MatTooltipModule,
+    BrowserAnimationsModule,
   ],
-  providers: [Logger, LivestatsService, WebsocketService, SocketioService, DdragonService],
+  providers: [/*Logger, */LivestatsService, WebsocketService, SocketioService, DdragonService],
   bootstrap: [AppComponent]
 })
 export class AppModule {
-  constructor(private logger: Logger) {
+  constructor(/*private logger: Logger*/) {
     if (isDevMode()) {
       console.info('To see debug logs enter: \'logger.level = logger.Level.DEBUG;\' in your browser console');
     }
-    this.logger.level = environment.logger.level;
+    // this.logger.level = environment.logger.level;
   }
 }

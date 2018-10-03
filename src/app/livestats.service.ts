@@ -3,27 +3,27 @@ import { Subject, Observable, BehaviorSubject } from 'rxjs/Rx';
 import { WebsocketService } from './websocket.service';
 import { SocketioService } from './socketio.service';
 import { Http, Response } from '@angular/http';
-import { Logger } from "angular2-logger/core";
+// import { Logger } from 'angular2-logger/core';
 
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 
-const TOKEN_URL = "http://api.lolesports.com/api/issueToken";
+const TOKEN_URL = 'http://api.lolesports.com/api/issueToken';
 const TOKEN = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ2IjoiMS4wIiwiamlkIjoiNjczODA1YjUtZWE3My00ZDVkLThiNGEtZTM4ZGE2MWU1ODIzIiwiaWF0IjoxNDg2ODQ2NDE1NzIzLCJleHAiOjE0ODc0NTEyMTU3MjMsIm5iZiI6MTQ4Njg0NjQxNTcyMywiY2lkIjoiYTkyNjQwZjI2ZGMzZTM1NGI0MDIwMjZhMjA3NWNiZjMiLCJzdWIiOnsiaXAiOiI5My4zMS4xNDEuMTQyIiwidWEiOiJNb3ppbGxhLzUuMCAoWDExOyBMaW51eCB4ODZfNjQpIEFwcGxlV2ViS2l0LzUzNy4zNiAoS0hUTUwsIGxpa2UgR2Vja28pIENocm9tZS81NC4wLjI4NDAuNTkgU2FmYXJpLzUzNy4zNiJ9LCJyZWYiOlsid2F0Y2guKi5sb2xlc3BvcnRzLmNvbSJdLCJzcnYiOlsibGl2ZXN0YXRzLXYxLjAiXX0.Jb77U4QHkro1QCnwizLSMcRrsngyo_Mq2V3tcrgOnkU";
 const WS_URL = 'ws://livestats.proxy.lolesports.com/stats?jwt=';
 
 @Injectable()
 export class LivestatsService {
-  private ls: Observable<MessageEvent>;
+  private ls: Observable<any>;
   private games = { toInit: true };
   public serviceInit = new Subject();
   public GameSubject = new BehaviorSubject<Object>(this.games);
-  public gameSelected = new BehaviorSubject<string>("-1");
+  public gameSelected = new BehaviorSubject<string>('-1');
 
 
-  constructor(wsService: WebsocketService, io: SocketioService, http: Http, private logger: Logger) {
+  constructor(wsService: WebsocketService, io: SocketioService, http: Http/*, private logger: Logger*/) {
     http.get(TOKEN_URL).map((res: Response) => res.json()).subscribe(issueToken => {
-      this.logger.info("Token received : ", issueToken);
+      // this.logger.info("Token received : ", issueToken);
       const TOKEN = issueToken.token;
       let lsCandidate = <Observable<MessageEvent>>wsService
         .connect(WS_URL + TOKEN)
@@ -36,8 +36,8 @@ export class LivestatsService {
           this.serviceInit.next("OK");
         },
         err => {
-          logger.error("Couldn't connect to Riot Livestats.");
-          logger.info("Trying secondary socket");
+          // logger.error("Couldn't connect to Riot Livestats.");
+          // logger.info("Trying secondary socket");
           this.ls = io.getMessages();
           this.ls.subscribe(
             msg => {

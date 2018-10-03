@@ -4,7 +4,7 @@ import { Subject, Observable, BehaviorSubject } from 'rxjs/Rx';
 
 @Injectable()
 export class DdragonService {
-  private version = "7.3.3";
+  private version = "8.19.1";
   private ddragon: string = "https://ddragon.leagueoflegends.com/";
   private itemsURL: string = this.ddragon + "cdn/" + this.version + "/data/en_US/item.json";
   constructor(private http: Http) { }

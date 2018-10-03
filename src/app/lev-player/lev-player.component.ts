@@ -1,5 +1,4 @@
 import { Component, OnInit, Input } from '@angular/core';
-
 @Component({
   selector: 'app-lev-player',
   templateUrl: './lev-player.component.html',
@@ -15,4 +14,18 @@ export class LevPlayerComponent implements OnInit {
   ngOnInit() {
   }
 
+  powerType(champion) {
+    const energy = ['Akali', 'Kennen', 'LeeSin', 'Shen', 'Zed'];
+    const nothing = ['Garen', 'Katarina', 'Riven'];
+    const fierce = ['Rengar'];
+    const rage = ['Renekton', 'Tryndamere', 'Shyvana', 'Gnar', 'RekSai'];
+    const nomana = energy.concat(nothing, fierce, rage);
+    if (nomana.indexOf(champion) !== -1) {
+      if (energy.indexOf(champion) !== -1) return 'energy'
+      else if (rage.indexOf(champion) !== -1) return 'red';
+      else return 'power';
+    } else {
+      return 'power';
+    }
+  }
 }

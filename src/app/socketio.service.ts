@@ -6,7 +6,7 @@ export class SocketioService {
   private socket;
 
   getMessages() {
-    let observable = new Observable(observer => {
+    const  observable = new Observable(observer => {
       try {
         this.socket = io.connect(this.url, { transports: ['polling'] });
         this.socket.on('message', (data) => {
