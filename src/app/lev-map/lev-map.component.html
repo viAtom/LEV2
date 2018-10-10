@@ -1,33 +1,31 @@
 <div class="game-info">
-    <div class="annonces"></div>
+    <div class="annonces">{{getAnnounce()}}</div>
     <div class="timer">{{getTime()}}</div>
     <svg width="512" height="512" class="lev-minimap">
-    <!-- 
-      <image href="assets/img/icon-tower.png" x="32" y="340" height="30" style="transform: rotateZ(0deg);" />
-      <image href="assets/img/icon-tower.png" x="114" y="366" height="30" style="transform: rotateZ(45deg);" />
-      <image href="assets/img/icon-tower.png" x="144" y="448" height="30" style="transform: rotateZ(90deg);" />
+      <!--<image href="assets/img/icon-tower.png" x="32" y="340" height="30" />
+      <image href="assets/img/icon-tower.png" x="114" y="366" height="30" />
+      <image href="assets/img/icon-tower.png" x="144" y="448" height="30" />
       <image href="assets/img/icon-inhibitor.png" x="32" y="380" height="20" />
       <image href="assets/img/icon-inhibitor.png" x="88" y="398" height="20" />
       <image href="assets/img/icon-inhibitor.png" x="106" y="452" height="20" />
-      <image href="assets/img/icon-tower.png" x="456" y="136" height="30" style="transform: rotateZ(180deg);" />
-      <image href="assets/img/icon-tower.png" x="376" y="108" height="30" style="transform: rotateZ(-135deg);" />
-      <image href="assets/img/icon-tower.png" x="350" y="29" height="30" style="transform: rotateZ(-90deg);" />
+      <image href="assets/img/icon-tower.png" x="456" y="136" height="30" />
+      <image href="assets/img/icon-tower.png" x="376" y="108" height="30" />
+      <image href="assets/img/icon-tower.png" x="350" y="29" height="30" />
       <image href="assets/img/icon-inhibitor.png" x="456" y="104" height="20" />
       <image href="assets/img/icon-inhibitor.png" x="404" y="86" height="20" />
-      <image href="assets/img/icon-inhibitor.png" x="384" y="34" height="20" />
-      -->
-    <g *ngFor="let player of game.players">
-      <defs>
-        <pattern [attr.id]="'icon-'+gameSelected+'-'+player.championName" x="0" y="0" height="100%" width="100%" viewBox="0 0 28 28">
-          <image x="-3" y="-3" width="34" height="34" [attr.xlink:href]="'http://ddragon.leagueoflegends.com/cdn/8.19.1/img/champion/'+player.championName+'.png'"></image>
-        </pattern>
-      </defs>
-      <circle [attr.cx]="player.x/29" [attr.cy]="512-(player.y/29)" r="14" [attr.stroke]="player.teamId=='100' ? 'rgba(58, 171, 195, 0.75)' : 'rgba(184, 71, 80, 0.75)'"
-        stroke-width="2" [attr.fill]="'url(#icon-'+gameSelected+'-'+player.championName+')'" (mouseleave)="mouseleave(player)" (mouseenter)="mouseenter(player)" class="champion-circle" [attr.filter]="player.h==0 && 'url(#grayscale)'"></circle>
-    </g>
-    <filter id="grayscale">
-      <feColorMatrix type="matrix" values="0.1111 0.1111 0.1111 0 0 0.1111 0.1111 0.1111 0 0 0.1111 0.1111 0.1111 0 0 0 0 0 1 0"
-      />
-    </filter>
-  </svg>
+      <image href="assets/img/icon-inhibitor.png" x="384" y="34" height="20" />-->
+      <g *ngFor="let player of game.players">
+        <defs>
+          <pattern [attr.id]="'icon-'+gameSelected+'-'+player.championName" x="0" y="0" height="100%" width="100%" viewBox="0 0 28 28">
+            <image x="-3" y="-3" width="34" height="34" [attr.xlink:href]="this.ddragon.url+'cdn/'+this.ddragon.version+'/img/champion/'+player.championName+'.png'"></image>
+          </pattern>
+        </defs>
+        <circle [attr.cx]="player.x/29" [attr.cy]="512-(player.y/29)" r="14" [attr.stroke]="player.teamId=='100' ? 'rgba(58, 171, 195, 0.75)' : 'rgba(184, 71, 80, 0.75)'"
+          stroke-width="2" [attr.fill]="'url(#icon-'+gameSelected+'-'+player.championName+')'" (mouseleave)="mouseleave(player)" (mouseenter)="mouseenter(player)" class="champion-circle" [attr.filter]="player.h==0 && 'url(#grayscale)'"></circle>
+      </g>
+      <filter id="grayscale">
+        <feColorMatrix type="matrix" values="0.1111 0.1111 0.1111 0 0 0.1111 0.1111 0.1111 0 0 0.1111 0.1111 0.1111 0 0 0 0 0 1 0"
+        />
+      </filter>
+    </svg>
 </div>

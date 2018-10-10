@@ -4,10 +4,18 @@ import { Subject, Observable, BehaviorSubject } from 'rxjs/Rx';
 
 @Injectable()
 export class DdragonService {
-  private version = "8.19.1";
-  private ddragon: string = "https://ddragon.leagueoflegends.com/";
-  private itemsURL: string = this.ddragon + "cdn/" + this.version + "/data/en_US/item.json";
-  constructor(private http: Http) { }
+  public version: string;
+  public url = 'https://ddragon.leagueoflegends.com/';
+  private itemsURL: string;
+  public serviceInit = new Subject();
+
+  constructor(private http: Http) {
+    this.http.get(`${this.url}api/versions.json`).map((res: Response) => res.json()).subscribe(data => {
+        this.version = data[0];
+        this.itemsURL = this.url + 'cdn/' + this.version + '/data/en_US/item.json';
+        this.serviceInit.next('OK');
+    });
+  }
 
   getItems(): Observable<Object> {
     return this.http.get(this.itemsURL)
@@ -16,7 +24,7 @@ export class DdragonService {
   }
 
   private extractData(res: Response) {
-    let body = res.json();
+    const body = res.json();
     return body.data || {};
   }
 
@@ -32,5 +40,4 @@ export class DdragonService {
     console.error(errMsg);
     return Observable.throw(errMsg);
   }
-
 }

@@ -2,7 +2,7 @@ import { Subject, Observable } from 'rxjs/Rx';
 import * as io from 'socket.io-client';
 
 export class SocketioService {
-  private url = 'http://wslol.viatom.xyz';
+  private url = 'httsp://wslol.viatom.xyz';
   private socket;
 
   getMessages() {

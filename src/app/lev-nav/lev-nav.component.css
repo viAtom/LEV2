@@ -1,47 +1,79 @@
 .navbar-perso {
-	border-radius: 0;
-	border: 0;
-	border-bottom: 2px solid #390e34;
-	background: #040507;
-	margin: 0;
-	height: 52px;
+    border-radius: 0;
+    border: 0;
+    border-bottom: 1px solid #292d31;
+    background: #040507;
+    margin: 0;
+    height: 66px;
+    color: #555d64;
+    font-size: 15px;
+    font-family: 'Colfax';
+    font-weight: bold;
+    letter-spacing: .40px;
+}
+
+.icon {
+    width: 43px;
+    height: 36px;
 }
 
 .navbar-brand-perso {
-	padding: 15px 10px 15px 0;;
-	color: #999;
-	display: inline-block;
+    padding: 10px 10px 0 0;
+    display: inline-block;
 }
 
-.navbar-brand-perso:hover {
-	color: #fff;
+.navbar-nav.nav>li {
+    margin-left: 10px;
+}
+
+.navbar-nav.nav>li>a {
+    color: #555d64;
+    padding-top: 23px;
+    padding-bottom: 23px;
+}
+
+.nav>li.game-selected>a {
+    color: #FFF;
+}
+
+.nav>li.game-selected>a::after {
+    content: '';
+    display: block;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background-color: #5abbd4;
 }
 
 .games {
-	margin: 10px 0;
+    margin: 10px 0;
+}
+
+.dropdown {
+    background-color: initial;
 }
 
 .dropdown-menu {
-	background-color: #040507;
+    background-color: #040507;
 }
 
-.dropdown-menu > li.game-available > a {
-	color: #999;
+.dropdown-menu>li:hover {
+    background-color: rgba(255, 255, 255, .1);
 }
 
-.dropdown-menu > li.game-available > a:hover {
-	background-color: #101010;
-	color: #FFF;
+.dropdown-menu>li.game-available>a {
+    color: #555d64;
+    font-weight: bold;
+    padding: 20px;
 }
 
-.game-available:not(.game-selected):hover {
-	cursor: pointer;
-}
-
-.game-selected, .dropdown-menu > li.game-selected > a:hover {
-	background-color: #303030;
-}
-
-.nav > li.game-selected > a, .dropdown-menu > li.game-selected.game-available > a {
-	color: #FFF;
+.dropdown>a:hover,
+.dropdown-menu>li.game-available>a:hover,
+.dropdown-menu>li.game-selected.game-available>a,
+.nav>li:hover>a {
+    color: #5abbd4;
+    cursor: pointer;
+    background-color: initial;
 }

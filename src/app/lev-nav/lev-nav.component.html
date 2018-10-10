@@ -1,24 +1,24 @@
 <nav class="navbar navbar-inverse navbar-perso">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <span class="navbar-brand-perso noselect">LoL Esports Viewer</span>
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <span class="navbar-brand-perso noselect"><svg class="icon" width="28px" height="28px" viewBox="0 0 228 190" xmlns="https://www.w3.org/2000/svg"><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><path d="M37.39981,102.125 C37.39981,91.9315 39.41381,82.20255 43.03711,73.2944 L43.03711,50.02225 C32.32871,64.6209 25.99981,82.63195 25.99981,102.125 C25.99981,121.61805 32.32871,139.63005 43.03711,154.2287 L43.03711,130.9556 C39.41381,122.04745 37.39981,112.3185 37.39981,102.125" id="Fill-1" fill="#C79E57"></path><path d="M114.191635,25.333175 C156.534085,25.333175 190.982985,59.782075 190.982985,102.124525 C190.982985,121.106475 184.045135,138.488625 172.592885,151.905475 L186.994885,151.905475 C196.701035,137.737175 202.382985,120.596325 202.382985,102.124525 C202.382985,53.418025 162.899085,13.933175 114.191635,13.933175 C111.241885,13.933175 108.327285,14.081375 105.451635,14.364475 L105.451635,25.845225 C108.322535,25.518425 111.235235,25.333175 114.191635,25.333175" id="Fill-4" fill="#C79E57"></path><polygon fill="#C79E57" points="40.376445 0 54.436445 16.91 54.436445 164.35 39.711445 190 168.247395 190 188.576445 163.305 94.051445 163.305 94.051445 0"></polygon></g></svg></span>
+        </div>
+        <ul class="nav navbar-nav navbar-right">
+            <!--<li class="clickable"><a>REPLAY</a></li>-->
+            <li><a href="https://watch.euw.lolesports.com/" target="_blank">WATCH LIVE</a></li>
+        </ul>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">GAMES<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li class="game-available" *ngFor="let a of groupsName" [class.game-selected]="groupSelected==a"><a (click)="chooseGroup(a)">{{ a }}</a></li>
+                        <!--<li role="separator" class="divider"></li>-->
+                    </ul>
+                </li>
+                <li class="game-available" *ngFor="let a of gameGroups[groupSelected]" [class.game-selected]="gameSelected==a"><a (click)="chooseMatch(a)">{{getNameMatch(a)}}<i class="material-icons red" [class.invisible]="games[a].gameComplete">fiber_manual_record</i></a></li>
+                <!--<li class="clickable" type="button" style="color: black"><a>Debug</a></li>-->
+            </ul>
+        </div>
     </div>
-    <ul class="nav navbar-nav navbar-right">
-      <li ng-click="replay()" class="clickable"><a>Replay</a></li>
-      <li><a href="http://watch.euw.lolesports.com/" target="_blank">Watch Esports Live</a></li>
-    </ul>
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav">
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Availables games <span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li class="game-available" *ngFor="let a of groupsName" [class.game-selected]="groupSelected==a"><a (click)="chooseGroup(a)">{{ a }}</a></li>
-            <!--<li role="separator" class="divider"></li>-->
-          </ul>
-        </li>
-        <li class="game-available" *ngFor="let a of gameGroups[groupSelected]" [class.game-selected]="gameSelected==a"><a (click)="chooseMatch(a)">{{getNameMatch(a)}}<i class="material-icons red" [class.invisible]="games[a].gameComplete">fiber_manual_record</i></a></li>
-        <!--<li class="clickable" type="button" style="color: black"><a>Debug</a></li>-->
-      </ul>
-    </div>
-  </div>
 </nav>

@@ -2,12 +2,11 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
-// import { Logger } from 'angular2-logger/core';
 import { isDevMode } from '@angular/core';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatProgressBarModule, MatTooltipModule } from '@angular/material';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { environment } from '../environments/environment';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { LivestatsService } from './livestats.service';
 import { WebsocketService } from './websocket.service';
@@ -20,7 +19,6 @@ import { LevMainComponent } from './lev-main/lev-main.component';
 import { LevMapComponent } from './lev-map/lev-map.component';
 import { LevPlayerComponent } from './lev-player/lev-player.component';
 import { LevHeaderComponent } from './lev-header/lev-header.component';
-
 
 @NgModule({
   declarations: [
@@ -36,10 +34,11 @@ import { LevHeaderComponent } from './lev-header/lev-header.component';
     FormsModule,
     HttpModule,
     MatProgressBarModule,
-    MatTooltipModule,
     BrowserAnimationsModule,
+    MatTooltipModule,
+    NgbModule
   ],
-  providers: [/*Logger, */LivestatsService, WebsocketService, SocketioService, DdragonService],
+  providers: [LivestatsService, WebsocketService, SocketioService, DdragonService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

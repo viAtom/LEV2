@@ -1,12 +1,24 @@
+@font-face {
+    font-family: 'Colfax';
+    font-weight: normal;
+    src: url('../fonts/ColfaxWebRegular.woff2') format('woff2')
+}
+
+@font-face {
+    font-family: 'Colfax';
+    font-weight: bold;
+    src: url('../fonts/ColfaxWebMedium.woff2') format('woff2')
+}
+
 html {
     height: 100%;
 }
 
 body {
-    font-family: 'Source Sans Pro', sans-serif;
+    font-family: 'Colfax', 'Source Sans Pro', sans-serif;
     font-size: 14px;
     margin: 0;
-    color: #fff;
+    color: #d7d7d7;
     height: 100%;
 }
 
@@ -14,6 +26,21 @@ i.material-icons {
     font-size: 16px;
     vertical-align: sub;
     line-height: 0;
+}
+
+.bg {
+    background: url("/assets/img/bg.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: #15171a;
+    filter: brightness(60%);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
 }
 
 .red {
@@ -36,15 +63,30 @@ i.material-icons {
 }
 
 .main {
-    height: calc(100% - 52px);
+    height: calc(100% - 66px - 60px);
     overflow: auto;
+}
+
+.disclaimer {
+    height: 60px;
+    width: 100%;
+    background-color: black;
+    border-top: 1px solid #292d31;
+    color: #555d64;
+    padding: 10px 130px 10px 40px;
+}
+
+.loading-container {
+    height: calc(100% - 66px - 60px);
 }
 
 .wrapper {
     text-align: center;
-    padding: 10px;
-    /*height: calc(100% - 60px);*/
+    padding: 0px;
     width: 100%;
+    height: calc(100% - 60px);
+    display: flex;
+    overflow: hidden;
 }
 
 .champion-square {
@@ -82,6 +124,14 @@ i.material-icons {
     left: -4px;
 }
 
+.blue-team .player {
+    padding-right: 30px;
+}
+
+.red-team .player {
+    padding-left: 30px;
+}
+
 .blue-team .player:hover .champion-square,
 .blue-team .player-container.hovered .champion-square {
     border: solid 2px #5abbd4;
@@ -99,9 +149,26 @@ i.material-icons {
     margin: 2px;
     vertical-align: middle;
     border: solid 1px #666;
-    background-size: 40px;
+    background-size: 42px;
     background-repeat: no-repeat;
-    background-position: -1px -1px;
+    background-position: -2px -2px;
+    position: relative;
+}
+
+.player-item>span {
+    position: absolute;
+    height: 20px;
+    width: 20px;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 16px;
+    background-color: #26292b;
+    border: solid 1px white;
+    font-size: 14px;
+    padding-left: 1px;
+    padding-top: 1px;
+    right: -4px;
+    bottom: -4px;
 }
 
 .clickable:hover {
@@ -111,24 +178,55 @@ i.material-icons {
 .player {
     height: auto;
     min-height: 120px;
-    padding: 10px 28px;
+    padding: 0;
+    display: flex;
+    align-items: center;
+}
+
+.player>div:not(.player-stuff) {
+    flex: 1 0 40%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.red-team .player>div:not(.player-stuff) {
+    justify-content: flex-start;
+}
+
+.player>div.player-stuff {
+    flex: 1 1 40%;
 }
 
 .team {
     width: calc((100% - 532px)/2 - 6%);
     min-height: 628px;
     vertical-align: middle;
-    background-color: #26292b;
-    border: solid 1px #e7e7e7;
-    color: #e7e7e7;
+    background-color: #15171a;
+    color: #d7d7d7;
     display: inline-block;
+    flex: 1 1 30%;
 }
 
 .players-container {
-    max-height: calc(100vh - 140px);
-    min-height: 628px;
-    overflow-y: auto;
-    overflow-x: visible;
+    height: 100%;
+    display: flex;
+    flex-flow: column;
+}
+
+.players-container>* {
+    flex: 1 1 auto;
+    display: flex;
+}
+
+.player-container {
+    justify-content: center;
+    display: flex;
+    flex-flow: column;
+}
+
+.players-container>*:not(:last-child)>.player-container {
+    border-bottom: solid 1px #292d31;
 }
 
 .player-container,
@@ -139,7 +237,7 @@ i.material-icons {
 
 .player-container:hover,
 .player-container.hovered {
-    background-color: #35393b;
+    background-color: #0e1012;
 }
 
 .game-info {
@@ -150,10 +248,12 @@ i.material-icons {
 
 .blue-team {
     text-align: right;
+    border-right: solid 1px #292d31;
 }
 
 .red-team {
     text-align: left;
+    border-left: solid 1px #292d31;
 }
 
 .header-info {
@@ -161,12 +261,12 @@ i.material-icons {
     text-align: center;
     font-size: 20px;
     height: 60px;
-    width: 40%;
+    width: 100%;
     display: flex;
     min-width: 400px;
-    margin: 10px auto 0;
-    background: #26292b;
-    border: solid 1px #e7e7e7;
+    margin: 0;
+    background-color: #15171a;
+    border-bottom: solid 1px #292d31;
     position: relative;
 }
 
@@ -192,19 +292,27 @@ i.material-icons {
     left: calc(50% - 10px);
 }
 
-.header-info>div>div>span>img {
-    height: 20px;
-    margin: 0 4px;
-}
-
 .header-info>div>div {
     width: 70%;
     margin-top: 16px;
 }
 
+.header-info>div>div>span {
+    margin: 0 14px;
+}
+
+.header-info>div>div>span>img {
+    height: 20px;
+    margin: 0 4px;
+}
+
+.header-info>div>div>span>* {
+    vertical-align: middle;
+}
+
 .header-info .team-name {
     font-size: 1.3em;
-    margin-top: 10px;
+    margin-top: 12px;
     width: 20%;
 }
 
@@ -266,7 +374,7 @@ i.material-icons {
 
 .divider {
     height: 1px;
-    background-color: #e7e7e7;
+    background-color: #292d31;
 }
 
 .indicator {
@@ -319,11 +427,11 @@ i.material-icons {
 }
 
 .player-dead {
-    box-shadow: inset 0px 0px 40px -4px rgba(255, 0, 0, 0.5);
+    box-shadow: inset 0px 0px 20px -2px rgba(255, 0, 0, 0.5);
 }
 
 .baron-active {
-    box-shadow: inset 0px 0px 40px -4px rgba(220, 0, 220, 0.5);
+    box-shadow: inset 0px 0px 20px -2px rgba(220, 0, 220, 0.5);
 }
 
 .stat-bars {
@@ -385,9 +493,9 @@ i.material-icons {
 svg.lev-minimap {
     width: 512px;
     height: 512px;
-    background-image: url('http://ddragon.leagueoflegends.com/cdn/6.8.1/img/map/map11.png');
+    background-image: url('/assets/img/map.png');
     background-size: 100%;
-    border: solid 2px #0C2830;
+    border: solid 1px #292d31;
     margin: 10px;
     display: block;
     flex: 0 0 auto;
@@ -414,10 +522,33 @@ svg.lev-minimap>image {
     opacity: 0;
 }
 
-div.mat-tooltip.lev-tooltip {
-    background-color: #101010;
-    color: white;
-    font-size: 12px;
-    border-radius: 10px;
-    border: 2px solid #390e34;
+.lev-tooltip {
+    opacity: 1;
+}
+
+.lev-tooltip>.arrow {
+    display: none;
+}
+
+.lev-tooltip>.tooltip-inner {
+    background-color: #010a13;
+    opacity: 1;
+    color: #cdbe91;
+    padding: 10px;
+    font-size: 14px;
+    border: solid 1px #785a28;
+    border-radius: 0px;
+    max-width: 500px;
+    text-align: left;
+    transition: all 1s linear;
+}
+
+.item-tooltip {
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important;
+}
+
+.item-tooltip .player-item {
+    border: solid 1px #292d31;
 }
