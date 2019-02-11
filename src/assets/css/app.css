@@ -29,7 +29,7 @@ i.material-icons {
 }
 
 .bg {
-    background: url("/assets/img/bg.jpg");
+    background: url("/assets/img/bg.webp");
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
@@ -316,6 +316,14 @@ i.material-icons {
     width: 20%;
 }
 
+.header-info .team-name>* {
+    vertical-align: middle;
+}
+
+.header-info .team-name .team-logo {
+    margin: 0 10px;
+}
+
 .header-info .team-kills {
     width: 10%;
     margin-top: 14px;
@@ -396,10 +404,6 @@ i.material-icons {
     border: 1px solid black;
     background: #040507;
     z-index: 1;
-}
-
-.timer {
-    font-size: 20px;
 }
 
 .loading {
@@ -493,7 +497,7 @@ i.material-icons {
 svg.lev-minimap {
     width: 512px;
     height: 512px;
-    background-image: url('/assets/img/map.png');
+    background-image: url('/assets/img/map.webp');
     background-size: 100%;
     border: solid 1px #292d31;
     margin: 10px;
@@ -551,4 +555,19 @@ svg.lev-minimap>image {
 
 .item-tooltip .player-item {
     border: solid 1px #292d31;
+}
+
+.item-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.item-name {
+    margin: 0 20px;
+}
+
+.item-separator {
+    border-top: solid 1px #785a28;
+    margin: 10px 0 0;
 }

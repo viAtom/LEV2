@@ -43,6 +43,7 @@ export class LevNavComponent {
 
   private getGamesGroup() {
     for (const game of Object.keys(this.games)) {
+      if (!this.games[game].hasOwnProperty('generatedName')) continue;
       const match = this.games[game].generatedName.split('|');
       const gameGroup = `${match[0]} vs ${match[1]}`;
       this.gameGroups[gameGroup] = this.gameGroups[gameGroup] || [];
@@ -72,6 +73,8 @@ export class LevNavComponent {
     return '-1';
   }
 
-  private replay() {
+  public replay() {
+    console.log('replay');
+    this.livestatsService.announce('has slain an enemy', 2, 'https://ddragon.leagueoflegends.com/cdn/8.17.1/img/champion/Urgot.png');
   }
 }

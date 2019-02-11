@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Http, Response } from '@angular/http';
-import { Subject, Observable, BehaviorSubject } from 'rxjs/Rx';
+import { Subject, Observable, BehaviorSubject } from 'rxjs';
 
 @Injectable()
 export class DdragonService {

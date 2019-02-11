@@ -4,12 +4,13 @@ import { Observer, Observable } from 'rxjs';
 @Injectable()
 export class WebsocketService {
   private socket: Observable<MessageEvent>;
-  public connect(url): Observable<MessageEvent> {
-    if (!this.socket) {
+  public connect(url, force = false): Observable<MessageEvent> {
+    if (!this.socket || force) {
       this.socket = this.create(url);
     }
     return this.socket;
   }
+
   private create(url): Observable<MessageEvent> {
     const ws = new WebSocket(url);
     const observable = Observable.create(

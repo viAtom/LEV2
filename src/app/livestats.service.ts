@@ -6,44 +6,52 @@ import { Http, Response } from '@angular/http';
 
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
-
-const TOKEN_URL = 'https://api.lolesports.com/api/issueToken';
-const WS_URL = 'wss://livestats.proxy.lolesports.com/stats?jwt=';
+import { DdragonService } from './ddragon.service';
 
 @Injectable()
 export class LivestatsService {
-  private ls: Observable<any>;
+  private ls: Observable<any> = null;
   private games = { toInit: true };
+  private token_url = 'https://api.lolesports.com/api/issueToken';
+  private ws_url = 'wss://livestats.proxy.lolesports.com/stats?jwt=';
   public serviceInit = new Subject();
   public GameSubject = new BehaviorSubject<Object>(this.games);
   public gameSelected = new BehaviorSubject<string>('-1');
   public announces = new BehaviorSubject<Object>({});
 
-  constructor(wsService: WebsocketService, io: SocketioService, http: Http) {
-    http.get(TOKEN_URL).map((res: Response) => res.json()).subscribe(issueToken => {
+  constructor(private wsService: WebsocketService, private io: SocketioService, private http: Http, private ddragon: DdragonService) {
+    const tokenObs = this.getToken();
+    tokenObs.subscribe(issueToken => {
       const token = issueToken.token;
-      const lsCandidate = <Observable<MessageEvent>>wsService
-        .connect(WS_URL + token)
-        .map((response: MessageEvent): Object => JSON.parse(response.data));
-      lsCandidate.subscribe(
-        msg => {
-          this.parseData(msg);
-          this.ls = lsCandidate;
-          this.GameSubject.next(this.games);
-          this.serviceInit.next('OK');
-        },
-        err => {
-          // logger.error("Couldn't connect to Riot Livestats.");
-          // logger.info("Trying secondary socket");
-          this.ls = io.getMessages();
-          this.ls.subscribe(
-            msg => {
-              this.parseData(msg);
-              this.GameSubject.next(this.games);
-              this.serviceInit.next('OK');
-            });
-        });
+      this.getCandidate(token);
+      /*setTimeout(() => {
+        if (this.ls === null) this.serviceInit.error('Couldnt load livestats');
+        }, 10000);*/
     });
+  }
+
+  private getCandidate(token, acc = 0) {
+    const candidate = this.getLS(token);
+    candidate.subscribe(
+      msg => {
+        this.ls = candidate;
+        this.parseData(msg);
+        this.GameSubject.next(this.games);
+        this.serviceInit.next('OK');
+      },
+      err => {
+        if (acc < 10) setTimeout(() => this.getCandidate(token, acc + 1), 1000);
+        else this.serviceInit.error('Couldnt load livestats');
+      });
+  }
+
+  private getToken() {
+    return this.http.get(this.token_url).map((res: Response) => res.json());
+  }
+
+  private getLS(token) {
+    const ws = this.wsService.connect(this.ws_url + token, true).map((response: MessageEvent): Object => JSON.parse(response.data));
+    return ws;
   }
 
   private filter(obj: Object, f) {
@@ -56,9 +64,8 @@ export class LivestatsService {
     return res;
   }
 
-  public announce(text, time = 2) {
-      this.announces.next({ text, time, until: -1 });
-      this.announces.next({ text: '', time: 1, until: -1 });
+  public announce(text, time = 2, icon = null) {
+    this.announces.next({ text, time, until: -1, icon });
   }
 
   private parseData(message) {
@@ -83,12 +90,14 @@ export class LivestatsService {
               }
               const cPlayer = this.games[game].playerStats[player];
               const evtPlayer = evt.playerStats[player];
+
+              const champion =  `${this.ddragon.url}cdn/${this.ddragon.version}/img/champion/${cPlayer.championName}.png`;
               if (evtPlayer.h && evtPlayer.h === 0) cPlayer.baronActive = false;
-              if (evtPlayer.pentaKills) this.announce(`${cPlayer.summonerName} (${cPlayer.championName}) PENTAKILL !!!`, 4);
-              else if (evtPlayer.quadraKills) this.announce(`${cPlayer.summonerName} (${cPlayer.championName}) Quadra Kill !!`, 3);
-              else if (evtPlayer.tripleKills) this.announce(`${cPlayer.summonerName} (${cPlayer.championName}) Triple Kill !`, 3);
-              else if (evtPlayer.doubleKills) this.announce(`${cPlayer.summonerName} (${cPlayer.championName}) Double Kill`, 2);
-              else if (evtPlayer.kills) this.announce(`${cPlayer.summonerName} (${cPlayer.championName}) has slain an enemy`, 2);
+              if (evtPlayer.pentaKills) this.announce(`${cPlayer.summonerName} PENTAKILL !!!`, 4, champion);
+              else if (evtPlayer.quadraKills) this.announce(`${cPlayer.summonerName} Quadra Kill !!`, 3, champion);
+              else if (evtPlayer.tripleKills) this.announce(`${cPlayer.summonerName} Triple Kill !`, 3, champion);
+              else if (evtPlayer.doubleKills) this.announce(`${cPlayer.summonerName} Double Kill`, 2, champion);
+              else if (evtPlayer.kills) this.announce(`${cPlayer.summonerName} has slain an enemy`, 2, champion);
             }
           }
           if (evt.teamStats) {

@@ -1,5 +1,7 @@
 <div class="game-info">
-    <div class="annonces">{{getAnnounce()}}</div>
+    <div class="annonces">
+        <img class="champion-square" [src]="announces[0].icon" *ngIf="announces.length>0"> {{announces.length>0 ? announces[0].text : ''}}
+    </div>
     <div class="timer">{{getTime()}}</div>
     <svg width="512" height="512" class="lev-minimap">
       <!--<image href="assets/img/icon-tower.png" x="32" y="340" height="30" />

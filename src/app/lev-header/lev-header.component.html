@@ -1,21 +1,27 @@
 <div class="header-info">
     <div class="header-blue">
-        <span class="team-name">{{game["blueTeam"].name}}</span>
+        <span class="team-name">
+            <img alt="Team logo" class="team-logo" [src]="imgUrl+teams[game['blueTeam'].name]">
+            <span>{{game["blueTeam"].name}}</span>
+        </span>
         <div>
-            <span class="team-inhibs"><span>{{game["blueTeam"].inhibitorsKilled}}</span><img src="assets/img/icon-inhibitor.png" /></span>
-            <span class="team-towers"><span>{{game["blueTeam"].towersKilled}}</span><img src="assets/img/icon-tower.png" /></span>
-            <span class="team-gold"><span>{{game["blueTeam"].tg/1000|number:'1.1-1'}}k</span><img src="assets/img/icon-player-gold.png" /></span>
+            <span class="team-inhibs"><span>{{game["blueTeam"].inhibitorsKilled}}</span><img alt="Inhibitors" src="assets/img/icon-inhibitor.png" /></span>
+            <span class="team-towers"><span>{{game["blueTeam"].towersKilled}}</span><img alt="Towers" src="assets/img/icon-tower.png" /></span>
+            <span class="team-gold"><span>{{game["blueTeam"].tg/1000|number:'1.1-1'}}k</span><img alt="Gold" src="assets/img/icon-player-gold.png" /></span>
         </div>
         <span class="team-kills">{{game.blueTeam.kills}}</span>
     </div>
-    <img class="team-icon-kill" src="assets/img/icon-team-kills.png" />
+    <img alt="Kills" class="team-icon-kill" src="assets/img/icon-team-kills.png" />
     <div class="header-red">
         <span class="team-kills">{{game.redTeam.kills}}</span>
         <div>
-            <span class="team-gold"><img src="assets/img/icon-player-gold.png"/><span>{{game["redTeam"].tg/1000|number:'1.1-1'}}k</span></span>
-            <span class="team-towers"><img src="assets/img/icon-tower.png"/><span>{{game["redTeam"].towersKilled}}</span></span>
-            <span class="team-inhibs"><img src="assets/img/icon-inhibitor.png"/><span>{{game["redTeam"].inhibitorsKilled}}</span></span>
+            <span class="team-gold"><img alt="Gold" src="assets/img/icon-player-gold.png"/><span>{{game["redTeam"].tg/1000|number:'1.1-1'}}k</span></span>
+            <span class="team-towers"><img alt="Towers" src="assets/img/icon-tower.png"/><span>{{game["redTeam"].towersKilled}}</span></span>
+            <span class="team-inhibs"><img alt="Inhibitors" src="assets/img/icon-inhibitor.png"/><span>{{game["redTeam"].inhibitorsKilled}}</span></span>
         </div>
-        <span class="team-name">{{game["redTeam"].name}}</span>
+        <span class="team-name">
+            <span>{{game["redTeam"].name}}</span>
+        <img alt="Team logo" class="team-logo" [src]="imgUrl+teams[game['redTeam'].name]">
+        </span>
     </div>
 </div>

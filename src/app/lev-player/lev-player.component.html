@@ -4,8 +4,12 @@
             <div [style.background-image]="'url('+this.ddragon.url+'cdn/'+this.ddragon.version+'/img/item/'+item.id+'.png)'" *ngFor="let item of player.items" class="player-item noselect" [ngbTooltip]="tooltip" tooltipClass="lev-tooltip item-tooltip" placement="right"
                 container="body">
                 <ng-template #tooltip>
-                    <div class="player-item" [style.background-image]="'url('+this.ddragon.url+'cdn/'+this.ddragon.version+'/img/item/'+item.id+'.png)'"></div>
-                    <b> {{items[item.id].name}}</b><br><br>
+                    <div class="item-header">
+                        <div class="player-item" [style.background-image]="'url('+this.ddragon.url+'cdn/'+this.ddragon.version+'/img/item/'+item.id+'.png)'"></div>
+                        <b class="item-name">{{items[item.id].name}}</b>
+                        <b>{{items[item.id].gold.total}} <img alt="Price" class="icon" src="assets/img/icon-player-gold.png"></b>
+                    </div>
+                    <hr class="item-separator"><br>
                     <div [innerHTML]="items[item.id].description"></div>
                 </ng-template>
                 <span *ngIf="item.nb>1">{{item.nb}}</span>
@@ -27,8 +31,8 @@
             <div class="player-info">
                 <div class="player-name">{{player.summonerName}}</div>
                 <div>{{player.kills}} / {{player.deaths}} / {{player.assists}}</div>
-                <div>{{player.mk}}<img class="icon" src="assets/img/icon-minion.png"></div>
-                <div>{{(player.tg>1000) ? (player.tg/1000).toFixed(3).replace('.', ' ') : player.tg}}<img class="icon" src="assets/img/icon-player-gold.png"></div>
+                <div>{{player.mk}}<img alt="CS" class="icon" src="assets/img/icon-minion.png"></div>
+                <div>{{(player.tg>1000) ? (player.tg/1000).toFixed(3).replace('.', ' ') : player.tg}}<img alt="Gold" class="icon" src="assets/img/icon-player-gold.png"></div>
             </div>
             <div class="champion-square noselect" [ngbTooltip]="player.championName" tooltipClass="lev-tooltip" placement="right" container="body" [style.background-image]="'url('+this.ddragon.url+'cdn/'+this.ddragon.version+'/img/champion/'+player.championName+'.png)'">
                 <div class="player-level noselect">{{player.level}}</div>
@@ -61,8 +65,8 @@
             <div class="player-info">
                 <div class="player-name">{{player.summonerName}}</div>
                 <div>{{player.kills}} / {{player.deaths}} / {{player.assists}}</div>
-                <div><img class="icon" src="assets/img/icon-minion.png">{{player.mk}}</div>
-                <div><img class="icon" src="assets/img/icon-player-gold.png">{{(player.tg>1000) ? (player.tg/1000).toFixed(3).replace('.', ' ') : player.tg}}</div>
+                <div><img alt="CS" class="icon" src="assets/img/icon-minion.png">{{player.mk}}</div>
+                <div><img alt="Gold" class="icon" src="assets/img/icon-player-gold.png">{{(player.tg>1000) ? (player.tg/1000).toFixed(3).replace('.', ' ') : player.tg}}</div>
             </div>
             <!--<div class="player-stats">
                 <div>
@@ -81,8 +85,12 @@
             <div [style.background-image]="'url('+this.ddragon.url+'cdn/'+this.ddragon.version+'/img/item/'+item.id+'.png)'" *ngFor="let item of player.items" class="player-item noselect" [ngbTooltip]="tooltip" tooltipClass="lev-tooltip item-tooltip" placement="left"
                 container="body">
                 <ng-template #tooltip>
-                    <div class="player-item" [style.background-image]="'url('+this.ddragon.url+'cdn/'+this.ddragon.version+'/img/item/'+item.id+'.png)'"></div>
-                    <b> {{items[item.id].name}}</b><br><br>
+                    <div class="item-header">
+                        <div class="player-item" [style.background-image]="'url('+this.ddragon.url+'cdn/'+this.ddragon.version+'/img/item/'+item.id+'.png)'"></div>
+                        <b class="item-name">{{items[item.id].name}}</b>
+                        <b>{{items[item.id].gold.total}} <img alt="Price" class="icon" src="assets/img/icon-player-gold.png"></b>
+                    </div>
+                    <hr class="item-separator"><br>
                     <div [innerHTML]="items[item.id].description"></div>
                 </ng-template>
                 <span *ngIf="item.nb>1">{{item.nb}}</span>

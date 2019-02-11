@@ -13,21 +13,18 @@ export class LevMapComponent {
   @Input() gameSelected;
   public announces = [];
   constructor(private ddragon: DdragonService, private livestats: LivestatsService) {
-    livestats.announces.subscribe(announce => {
+    livestats.announces.subscribe((announce: any) => {
       if (announce.hasOwnProperty('text') && announce.hasOwnProperty('time')) {
         this.announces.push(announce);
+        this.getAnnounce();
+        console.log(this.announces);
       }
     });
   }
 
   getAnnounce() {
-    if (this.announces.length === 0) return '';
-    else {
-      const announce = this.announces[0];
-      if (announce.until === -1) setTimeout(() => this.announces.shift(), announce.time * 1000);
-      announce.until = 0;
-      return announce.text;
-    }
+    const announce = this.announces[0];
+    setTimeout(() => this.announces.shift(), announce.time * 1000);
   }
 
   pad(n) {
