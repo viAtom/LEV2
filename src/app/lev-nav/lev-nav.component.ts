@@ -28,10 +28,20 @@ export class LevNavComponent {
     });
   }
 
+  private getNameFromPlayers(game) {
+    const blueTeam = game.playerStats[1].summonerName.split(' ')[0];
+    const redTeam = game.playerStats[10].summonerName.split(' ')[0];
+    return [blueTeam, redTeam, 'G?'];
+  }
+
   private getNameMatch(match) {
     const matchGeneral = this.games[match];
     if (matchGeneral) {
-      const matchName = matchGeneral.generatedName.split('|');
+      let matchName;
+      if (this.games[match].hasOwnProperty('generatedName'))
+        matchName = matchGeneral.generatedName.split('|');
+      else
+        matchName = this.getNameFromPlayers(this.games[match]);
       const blueTeam = matchName[0];
       const redTeam = matchName[1];
       const matchNumber = matchName[2].substr(1);
@@ -43,8 +53,11 @@ export class LevNavComponent {
 
   private getGamesGroup() {
     for (const game of Object.keys(this.games)) {
-      if (!this.games[game].hasOwnProperty('generatedName')) continue;
-      const match = this.games[game].generatedName.split('|');
+      let match;
+      if (this.games[game].hasOwnProperty('generatedName'))
+        match = this.games[game].generatedName.split('|');
+      else
+        match = this.getNameFromPlayers(this.games[game]);
       const gameGroup = `${match[0]} vs ${match[1]}`;
       this.gameGroups[gameGroup] = this.gameGroups[gameGroup] || [];
       if (this.gameGroups[gameGroup].indexOf(game) === -1) {

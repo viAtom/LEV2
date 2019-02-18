@@ -46,7 +46,7 @@ export class LevHeaderComponent {
     'GEN': 'geng-qelf7yu.png',
     'DWG': 'damwon-gaming-2eagu86e.png',
     'KT': 'kt-rolster-dv9kvyjx.png',
-    'AFs': 'afreeca-freecs-2a8dak1f.png',
+    'AF': 'afreeca-freecs-2a8dak1f.png',
     'JAG': 'jin-air-green-wings-hc0ywme6.png',
   };
 
@@ -71,7 +71,7 @@ export class LevHeaderComponent {
 
   public TCL = {
     'SUP': 'supermassive-esports-8l3sbui2.png',
-    'RY': 'royal-bandits-e-sports-hzvrfwi5.png',
+    'RYL': 'royal-bandits-e-sports-hzvrfwi5.png',
     'GS': 'galatasaray-esports-bamvqliv.png',
     'FB': '1907-fenerbahce-espor-b5nuqf04.png',
     'BJK': 'besiktas-cpgfvptx.png',
