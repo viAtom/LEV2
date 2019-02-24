@@ -57,6 +57,8 @@
 
 .dropdown-menu {
     background-color: #040507;
+    max-height: calc(100vh - 66px - 10px);
+    overflow-y: auto;
 }
 
 .dropdown-menu>li:hover {

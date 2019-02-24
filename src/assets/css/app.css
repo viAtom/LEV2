@@ -322,6 +322,7 @@ i.material-icons {
 
 .header-info .team-name .team-logo {
     margin: 0 10px;
+    font-size: 10px;
 }
 
 .header-info .team-kills {
@@ -527,7 +528,7 @@ svg.lev-minimap>image {
 }
 
 .lev-tooltip {
-    opacity: 1;
+    opacity: 1 !important;
 }
 
 .lev-tooltip>.arrow {

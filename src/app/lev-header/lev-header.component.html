@@ -1,7 +1,7 @@
 <div class="header-info">
     <div class="header-blue">
         <span class="team-name">
-            <img alt="Team logo" class="team-logo" [src]="imgUrl+teams[game['blueTeam'].name]">
+            <img alt="Logo" class="team-logo" [src]="imgUrl+teams[game['blueTeam'].name]">
             <span>{{game["blueTeam"].name}}</span>
         </span>
         <div>
@@ -21,7 +21,10 @@
         </div>
         <span class="team-name">
             <span>{{game["redTeam"].name}}</span>
-        <img alt="Team logo" class="team-logo" [src]="imgUrl+teams[game['redTeam'].name]">
+        <img alt="Logo" class="team-logo" [src]="imgUrl+teams[game['redTeam'].name]">
         </span>
     </div>
+</div>
+<div class="team-logo-loader">
+  <img *ngFor="let team of teamsArray" [src]="imgUrl+team">
 </div>

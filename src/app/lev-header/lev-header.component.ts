@@ -8,6 +8,7 @@ import { LEAVE_CLASSNAME } from '@angular/animations/browser/src/util';
 })
 export class LevHeaderComponent {
   @Input() game;
+  @Input() playingTeams;
   private akamai = 'https://am-a.akamaihd.net/image/?resize=40:40&f=';
   public imgUrl = `${this.akamai}https%3A%2F%2Flolstatic-a.akamaihd.net%2Fesports-assets%2Fproduction%2Fteam%2F`;
 
@@ -79,7 +80,7 @@ export class LevHeaderComponent {
     'DP': 'dark-passage-1vuiuddo.png',
     'HWA': 'hwa-gaming-hpzupz27.png',
     'GAL': 'galakticos-hqjaw6ig.png',
-    'BS': 'bursaspor-esports-fhdw3a5q.png',
+    'BUR': 'bursaspor-esports-fhdw3a5q.png',
   };
 
   public CBLOL = {
@@ -93,6 +94,17 @@ export class LevHeaderComponent {
     'PRG': 'progaming-e-sports-10iyfq3l.png',
   };
 
+  public LJL = {
+    'DFM': 'detonation-focusme-4a9bzdvg.png',
+    'CGA': 'crest-gaming-act-e99302fb.png',
+    'USG': 'unsold-stuff-gaming-zrbxiqt.png',
+    'BC': 'burning-core-7q0431w1.png',
+    'RJ': 'rascal-jester-e0g6cud0.png',
+    'V3': 'v3-esports-4r8dffpi.png',
+    'SG': 'sengoku-gaming-ikyxjlfn.png',
+    'AXZ': 'axiz-frilmkic.png',
+  };
+
   public teams = {
     ...this.LEC,
     ...this.LCS,
@@ -100,6 +112,9 @@ export class LevHeaderComponent {
     ...this.LPL,
     ...this.TCL,
     ...this.CBLOL,
+    ...this.LJL,
   };
+
+  public teamsArray = Object.values(this.teams);
   constructor() { }
 }

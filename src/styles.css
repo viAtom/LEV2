@@ -2,3 +2,22 @@
 
 @import 'https://fonts.googleapis.com/icon?family=Material+Icons';
 @import "~@angular/material/prebuilt-themes/deeppurple-amber.css";
+
+@media (pointer: fine) {
+  ::-webkit-scrollbar {
+      height:14px;
+      width: 14px;
+      background-color: transparent;
+      margin: 0 10px
+  }
+
+  ::-webkit-scrollbar-thumb {
+      background: #292d31;
+      -webkit-border-radius: 1ex;
+      border: 3px solid #040507;
+  }
+
+  ::-webkit-scrollbar-corner {
+      background: #000
+  }
+}
