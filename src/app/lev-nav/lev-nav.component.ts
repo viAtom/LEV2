@@ -86,6 +86,8 @@ export class LevNavComponent {
     return '-1';
   }
 
+  private isPlaying = (group) => this.gameGroups[group].some(game => !this.games[game].gameComplete);
+
   public replay() {
     console.log('replay');
     this.livestatsService.announce('has slain an enemy', 2, 'https://ddragon.leagueoflegends.com/cdn/8.17.1/img/champion/Urgot.png');

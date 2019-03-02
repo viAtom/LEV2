@@ -12,7 +12,7 @@
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">GAMES<span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li class="game-available" *ngFor="let a of groupsName" [class.game-selected]="groupSelected==a"><a (click)="chooseGroup(a)">{{ a }}</a></li>
+                        <li class="game-available" *ngFor="let a of groupsName" [class.game-selected]="groupSelected==a"><i [class.invisible]="!isPlaying(a)" class="fiber-record material-icons red">fiber_manual_record</i><a (click)="chooseGroup(a)">{{ a }}</a></li>
                         <!--<li role="separator" class="divider"></li>-->
                     </ul>
                 </li>
