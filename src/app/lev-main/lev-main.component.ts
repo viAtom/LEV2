@@ -11,6 +11,7 @@ export class LevMainComponent {
   private games: Object;
   private gameSelected;
   public game: Object;
+  public loading = true;
   private ddragon;
   private items: Object = {};
   public message = 'Please wait while loading';
@@ -18,13 +19,22 @@ export class LevMainComponent {
   constructor(private livestatsService: LivestatsService, private ddragonService: DdragonService) {
     livestatsService.serviceInit.subscribe(() => {
       livestatsService.GameSubject.subscribe(msg => {
-          this.games = msg;
-          this.updateInfoTeam();
+        if (msg === 'init') return;
+        this.games = msg;
+        this.loading = false;
+        this.updateInfoTeam();
       });
       this.livestatsService.gameSelected.subscribe(msg => {
+        if (msg === 'init') return;
         this.gameSelected = msg;
+        this.loading = false;
         this.updateInfoTeam();
         this.game = this.games[this.gameSelected];
+      });
+      this.livestatsService.problems.subscribe(msg => {
+        if (msg === 'init') return;
+        this.message = msg;
+        this.loading = false;
       });
     }, err => this.message = 'There has been an error with LoL, please reload.');
     ddragonService.serviceInit.subscribe(() => {

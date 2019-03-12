@@ -15,7 +15,7 @@
     </div>
 </div>
 <div class="loading-container" [class.invisible]="game">
-    <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+    <mat-progress-bar [class.invisible]="!loading" mode="indeterminate"></mat-progress-bar>
     <div class="loading">
         <div>{{message}}</div>
     </div>

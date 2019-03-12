@@ -16,8 +16,9 @@ export class LivestatsService {
   private ws_url = 'wss://livestats.proxy.lolesports.com/stats?jwt=';
   public serviceInit = new Subject();
   public GameSubject = new BehaviorSubject<Object>(this.games);
-  public gameSelected = new BehaviorSubject<string>('-1');
-  public announces = new BehaviorSubject<Object>({});
+  public gameSelected = new BehaviorSubject<string>('init');
+  public announces = new BehaviorSubject<Object>('init');
+  public problems = new BehaviorSubject<string>('init');
 
   constructor(private wsService: WebsocketService, private io: SocketioService, private http: Http, private ddragon: DdragonService) {
     const tokenObs = this.getToken();
@@ -76,8 +77,10 @@ export class LivestatsService {
       const idGame = window.location.pathname.slice(1);
       if (idGame !== '' && Object.keys(this.games).indexOf(idGame) !== -1) {
         this.gameSelected.next(idGame);
-      } else {
+      } else if (Object.keys(this.games).length > 0) {
         this.gameSelected.next(Object.keys(this.games).reduce((a, b) => parseInt(a, 10) > parseInt(b, 10) ? a : b));
+      } else {
+        this.problems.next('No match data found from LoL E-Sports');
       }
     } else {
       for (const game of Object.keys(json)) {
